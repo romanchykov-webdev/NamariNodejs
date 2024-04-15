@@ -21,9 +21,10 @@ http
           if (extname in mimeTypes) staticFile(res, url, extname);
       }
     } catch (e) {
-      log.error(e);
+      // log.error(e);
       res.statusCode = 404;
-      res.end("<h1>sam error</h1>");
+      res.end("<h1>sam error 404</h1>");
+      return `sam error 404 ${e}`;
     }
 
     // const url = req.url;
