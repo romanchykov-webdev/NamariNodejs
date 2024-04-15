@@ -13,7 +13,8 @@ http
 
       switch (url) {
         case "/":
-          staticFile(res, "/html/main_page.html", ".html");
+          res.end("<h1>Main page</h1>");
+          // staticFile(res, "/html/main_page.html", ".html");
           break;
         default:
           const extname = String(path.extname(url)).toLocaleLowerCase();
