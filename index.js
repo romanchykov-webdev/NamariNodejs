@@ -13,7 +13,7 @@ http
 
       switch (url) {
         case "/":
-          res.end("<h1>Main page</h1>");
+          res.end("<h1>Main page new</h1>");
           // staticFile(res, "/html/main_page.html", ".html");
           break;
         default:
