@@ -1,41 +1,45 @@
 const http = require("http");
 const path = require("path");
-const {mimeTypes} = require("./utilities/mime");
-const {staticFile} = require("./utilities/static_file");
+const { mimeTypes } = require("./utilities/mime");
+const { staticFile } = require("./utilities/static_file");
 const PORT = 3500;
 
 http
-    .createServer((req, res) => {
-        try {
-            const url = req.url;
-            console.log(url);
-            console.log("server work");
+  .createServer((req, res) => {
+    try {
+      const url = req.url;
+      console.log(url);
+      console.log("server work");
 
-            switch (url) {
-                case "/":
-                    staticFile(res, "/html/main_page.html", ".html");
-                    break;
-                default:
-                    const extname = String(path.extname(url)).toLocaleLowerCase();
-                    if (extname in mimeTypes) staticFile(res, url, extname);
-            }
-        }
+      switch (url) {
+        case "/":
+          staticFile(res, "/html/main_page.html", ".html");
+          break;
+        default:
+          const extname = String(path.extname(url)).toLocaleLowerCase();
+          if (extname in mimeTypes) staticFile(res, url, extname);
+      }
+    } catch (e) {
+      log.error(e);
+      res.statusCode = 404;
+      res.end();
+    }
 
-        // const url = req.url;
-        // console.log(url);
-        // console.log("server work");
-        //
-        // switch (url) {
-        //   case "/":
-        //     staticFile(res, "/html/main_page.html", ".html");
-        //     break;
-        //   default:
-        //     const extname = String(path.extname(url)).toLocaleLowerCase();
-        //     if (extname in mimeTypes) staticFile(res, url, extname);
-        //     else {
-        //       res.statusCode = 404;
-        //       res.end();
-        //     }
-        // }
-    })
-    .listen(process.env.PORT);
+    // const url = req.url;
+    // console.log(url);
+    // console.log("server work");
+    //
+    // switch (url) {
+    //   case "/":
+    //     staticFile(res, "/html/main_page.html", ".html");
+    //     break;
+    //   default:
+    //     const extname = String(path.extname(url)).toLocaleLowerCase();
+    //     if (extname in mimeTypes) staticFile(res, url, extname);
+    //     else {
+    //       res.statusCode = 404;
+    //       res.end();
+    //     }
+    // }
+  })
+  .listen(PORT || process.env.PORT);
