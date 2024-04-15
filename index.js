@@ -6,21 +6,40 @@ const PORT = 3500;
 
 http
   .createServer((req, res) => {
-    const url = req.url;
-    console.log(url);
-    console.log("server work");
+    try {
+      const url = req.url;
+      console.log(url);
+      console.log("server work");
 
-    switch (url) {
-      case "/":
-        staticFile(res, "/html/main_page.html", ".html");
-        break;
-      default:
-        const extname = String(path.extname(url)).toLocaleLowerCase();
-        if (extname in mimeTypes) staticFile(res, url, extname);
-        else {
-          res.statusCode = 404;
-          res.end();
-        }
+      switch (url) {
+        case "/":
+          staticFile(res, "/html/main_page.html", ".html");
+          break;
+        default:
+          const extname = String(path.extname(url)).toLocaleLowerCase();
+          if (extname in mimeTypes) staticFile(res, url, extname);
+      }
+    } catch (e) {
+      log.error(e);
+      res.statusCode = 404;
+      res.end();
     }
+
+    // const url = req.url;
+    // console.log(url);
+    // console.log("server work");
+    //
+    // switch (url) {
+    //   case "/":
+    //     staticFile(res, "/html/main_page.html", ".html");
+    //     break;
+    //   default:
+    //     const extname = String(path.extname(url)).toLocaleLowerCase();
+    //     if (extname in mimeTypes) staticFile(res, url, extname);
+    //     else {
+    //       res.statusCode = 404;
+    //       res.end();
+    //     }
+    // }
   })
-  .listen(PORT);
+  .listen(PORT || process.env.PORT);
