@@ -42,4 +42,4 @@ http
     //     }
     // }
   })
-  .listen(PORT || process.env.PORT);
+  .listen(process.env.PORT);
