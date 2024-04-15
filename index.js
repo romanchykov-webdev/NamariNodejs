@@ -23,7 +23,7 @@ http
     } catch (e) {
       log.error(e);
       res.statusCode = 404;
-      res.end();
+      res.end("<h1>sam error</h1>");
     }
 
     // const url = req.url;
