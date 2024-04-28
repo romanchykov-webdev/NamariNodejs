@@ -2,8 +2,9 @@ const http = require("http");
 const path = require("path");
 const { mimeTypes } = require("./utilities/mime");
 const { staticFile } = require("./utilities/static_file");
+const PORT = process.env.PORT || 3500
 // const PORT = 3500;
-const PORT = 'https://namari-nodejs.vercel.app';
+// const PORT = 'https://namari-nodejs.vercel.app';
 // npm i -g nodemon if note install
 // nodemon .\index.js               ---- run server
 
@@ -15,6 +16,8 @@ http
 
     switch (url) {
       case "/":
+          console.log('/html/main_page.html')
+          console.log(process.env)
         staticFile(res, "/html/main_page.html", ".html");
         break;
       default:
@@ -26,4 +29,6 @@ http
         }
     }
   })
-  .listen(PORT || process.env.PORT);
+  .listen(PORT, () => {
+      console.log(`Server running on port:${PORT}/`)
+  })
