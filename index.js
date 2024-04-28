@@ -3,8 +3,8 @@ const path = require("path");
 const { mimeTypes } = require("./utilities/mime");
 const { staticFile } = require("./utilities/static_file");
 // const PORT = `https://namari-nodejs.vercel.app/` || 3500
-// const PORT = 3500;
-const PORT = `https://namari-nodejs.vercel.app`;
+const PORT = 3500;
+// const PORT = `https://namari-nodejs.vercel.app`;
 // npm i -g nodemon if note install
 // nodemon .\index.js               ---- run server
 
